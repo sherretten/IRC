@@ -34,7 +34,6 @@ const PORT = process.env.PORT || 3000
 
     socket.on('disconnect', () => {
       const user = userLeaves(socket.id)
-
       if(user){
         io.to(user.room).emit('message', formatMessage(Bot, `${user.username} has left the chat`)) // Sent to everyone
         io.to(user.room).emit('roomUsers', {
